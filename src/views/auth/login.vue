@@ -14,13 +14,7 @@ import { useForm, useField } from 'vee-validate';
 import InputField from '@/components/ui/InputField.vue';
 import FormBase from '@/components/ui/FormBase.vue';
 import { loginSchema } from '@/Schemas/authSchema';
-
-type Field = {
-  label: string;
-  type: string;
-  name: string;
-  value: any;
-};
+import type { Field } from '@/types/authType';
 
 const { handleSubmit, errors } = useForm({
   validationSchema: loginSchema,
