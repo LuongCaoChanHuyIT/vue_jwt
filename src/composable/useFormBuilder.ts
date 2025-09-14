@@ -4,16 +4,23 @@ import type { AnyObjectSchema } from 'yup';
 import type { Field } from '@/types/authType';
 
 export function useFormBuilder(schema: AnyObjectSchema, fieldDefs: Omit<Field, 'value'>[]) {
-  const { handleSubmit, errors } = useForm({
+  const { handleSubmit, errors, setFieldError } = useForm({
     validationSchema: schema,
   });
 
   const fields = ref<Field[]>(
     fieldDefs.map((f) => {
-      const { value } = useField<string>(f.name);
-      return { ...f, value };
+      if (f.name === 'email') {
+        const { value } = useField<string>(f.name, undefined, {
+          initialValue: 'test@gmail.com',
+        });
+        return { ...f, value };
+      } else {
+        const { value } = useField<string>(f.name);
+        return { ...f, value };
+      }
     })
   );
 
-  return { fields, errors, handleSubmit };
+  return { fields, errors, handleSubmit, setFieldError };
 }

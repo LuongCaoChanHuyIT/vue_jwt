@@ -5,6 +5,9 @@
         <InputField :field="field" :errors="errors" />
       </template>
     </FormBase>
+    <div class="mt-3">
+      <RouterLink to="/auth/register">Don't have an account? Register</RouterLink>
+    </div>
   </div>
 </template>
 
