@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FormBase buttonName="Login" :onSubmit="handleLogin">
+    <FormBase buttonName="Register" :onSubmit="handleLogin">
       <template v-for="field in fields">
         <InputField :field="field" :errors="errors" />
       </template>
@@ -18,7 +18,10 @@ import { registerSchema } from '@/schemas/authSchema';
 import { useFormBuilder } from '@/composable/useFormBuilder';
 import { ref } from 'vue';
 import { register } from '@/apis/auth';
+import type { RegisterData } from '@/types/authType';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const arrFields = ref([
   { label: 'Email', type: 'email', name: 'email' },
   { label: 'Password', type: 'password', name: 'password' },
@@ -37,11 +40,18 @@ const handleLogin = handleSubmit(async (values) => {
     setFieldError('re-password', 'Password and Confirm Password do not match');
     return;
   }
-  const data = {
+  const data: RegisterData = {
+    name: 'User',
     email: values.email,
     password: values.password,
   };
   const res = await register(data);
-  console.log('Register response:', res);
+  const { data: resData } = res;
+  if (resData.success) {
+    alert('Register successfully, please login');
+    router.push('/auth');
+  } else {
+    alert(resData.message || 'Register failed');
+  }
 });
 </script>

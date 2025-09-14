@@ -12,7 +12,7 @@ export function useFormBuilder(schema: AnyObjectSchema, fieldDefs: Omit<Field, '
     fieldDefs.map((f) => {
       if (f.name === 'email') {
         const { value } = useField<string>(f.name, undefined, {
-          initialValue: 'test@gmail.com',
+          initialValue: 'admin@gmail.com',
         });
         return { ...f, value };
       } else {

@@ -17,6 +17,8 @@ import FormBase from '@/components/ui/FormBase.vue';
 import { loginSchema } from '@/schemas/authSchema';
 import { useFormBuilder } from '@/composable/useFormBuilder';
 import { ref } from 'vue';
+import { login } from '@/apis/auth';
+import type { LoginData } from '@/types/authType';
 
 const arrFields = ref([
   { label: 'Email', type: 'email', name: 'email' },
@@ -24,7 +26,16 @@ const arrFields = ref([
 ]);
 const { handleSubmit, errors, fields } = useFormBuilder(loginSchema, arrFields.value);
 
-const handleLogin = handleSubmit((values) => {
-  console.log('Form values:', values);
+const handleLogin = handleSubmit(async (values) => {
+  const data: LoginData = {
+    email: values.email,
+    password: values.password,
+  };
+  const res = await login(data);
+  if (res.data.success) {
+    alert('Login successful!');
+  } else {
+    alert('Login failed: ' + res.data.message);
+  }
 });
 </script>

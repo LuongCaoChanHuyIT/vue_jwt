@@ -6,6 +6,7 @@
       class="form-control"
       v-model="props.field.value"
       :class="{ 'is-invalid': props.errors[field.name] }"
+      autocomplete="off"
     />
     <small v-if="errors[props.field.name]" class="text-danger">
       {{ errors[props.field.name] }}
