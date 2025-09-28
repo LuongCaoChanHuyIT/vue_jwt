@@ -32,7 +32,9 @@ const handleLogin = handleSubmit(async (values) => {
     password: values.password,
   };
   const res = await login(data);
-  if (res.data.success) {
+  console.log(res);
+  
+  if (res.data.token) {
     alert('Login successful!');
   } else {
     alert('Login failed: ' + res.data.message);
