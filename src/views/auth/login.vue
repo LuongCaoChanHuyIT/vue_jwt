@@ -19,11 +19,13 @@ import { useFormBuilder } from '@/composable/useFormBuilder';
 import { ref } from 'vue';
 import { login } from '@/apis/auth';
 import type { LoginData } from '@/types/authType';
+import { useRouter } from 'vue-router';
 
 const arrFields = ref([
   { label: 'Email', type: 'email', name: 'email' },
   { label: 'Password', type: 'password', name: 'password' },
 ]);
+const router = useRouter()
 const { handleSubmit, errors, fields } = useFormBuilder(loginSchema, arrFields.value);
 
 const handleLogin = handleSubmit(async (values) => {
@@ -35,7 +37,9 @@ const handleLogin = handleSubmit(async (values) => {
   console.log(res);
   
   if (res.data.token) {
+    localStorage.setItem('token', res.data.token)
     alert('Login successful!');
+    router.push('/')
   } else {
     alert('Login failed: ' + res.data.message);
   }
