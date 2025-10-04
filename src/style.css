@@ -1,0 +1,12 @@
+.navbar-custom {
+  background-color: #ffffff !important;
+}
+
+.topbar {
+  background-color: #ffffff !important;
+}
+
+[data-bs-theme='dark'] .navbar-custom,
+[data-bs-theme='dark'] .topbar {
+  background-color: #1e1e2e !important;
+}

@@ -11,6 +11,9 @@ import * as bootstrap from 'bootstrap';
 import '@mdi/font/css/materialdesignicons.css';
 import 'boxicons/css/boxicons.min.css';
 
+// Morris.js CSS
+// import 'morris.js/morris.css';
+
 // Custom styles
 import '@/assets/css/style.min.css';
 import '@/assets/css/icons.min.css';
