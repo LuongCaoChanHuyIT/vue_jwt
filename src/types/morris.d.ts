@@ -7,3 +7,5 @@ declare module 'raphael' {
   const Raphael: any;
   export default Raphael;
 }
+
+declare module 'morris.js/morris.js';

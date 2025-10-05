@@ -7,15 +7,4 @@ declare module '*.vue' {
   export default component;
 }
 
-declare module 'morris.js';
-declare module 'raphael';
-
-declare global {
-  interface Window {
-    bootstrap: typeof BootstrapTypes;
-    $: any;
-    jQuery: any;
-  }
-}
-
 export {};
